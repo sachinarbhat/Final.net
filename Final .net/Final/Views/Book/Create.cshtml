@@ -5,7 +5,7 @@
 }
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ADO - ADD Books</title>
+    <title>Admin Create</title>
     <link rel="stylesheet" asp-href-include="twitter-bootstrap/css/bootstrap.css" />
 </head>
 <h1>Create</h1>
@@ -18,7 +18,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Book_image" class="control-label"></label>
-                <input asp-for="Book_image" class="form-control" />
+                <input asp-for="Book_image" class="form-control" placeholder="Enter URL of the image" />
                 <span asp-validation-for="Book_image" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,17 +33,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="Book_name" class="control-label"></label>
-                <input asp-for="Book_name" class="form-control" />
+                <input asp-for="Book_name" class="form-control" placeholder="Enter Book name" />
                 <span asp-validation-for="Book_name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Cost" class="control-label"></label>
-                <input asp-for="Cost" class="form-control" />
+                <input asp-for="Cost" class="form-control" placeholder="Enter its cost"/>
                 <span asp-validation-for="Cost" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
+                <input asp-for="Author" class="form-control" placeholder="Author of the book"/>
                 <span asp-validation-for="Author" class="text-danger"></span>
             </div>
             <div class="form-group">

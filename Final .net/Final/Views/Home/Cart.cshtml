@@ -4,14 +4,11 @@
     ViewData["Title"] = "Cart";
 }
 
-<h1>Cart</h1>
-
 <!DOCTYPE html>
 <html>
 <head>
    
         <meta name="viewport" content="width=device-width" />
-        <title>Book Store Admin</title>
         <link rel="stylesheet" asp-href-include="twitter-bootstrap/css/bootstrap.css" />
     
     <title>Cart Page</title>
@@ -55,7 +52,7 @@
 
 
         .container {
-            background-color: #ffeee6;
+            background-color: #f0f1f4;
             padding: 5px 20px 15px 20px;
             border: 1px solid lightgrey;
             border-radius: 3px;
@@ -69,10 +66,27 @@
             float: right;
             color: grey;
         }
+        a{
+            text-decoration:none;
+            color:darkred;
+            float:right;
+        }
+        .dustbin:hover{
+            color:red;
+        }
+        .go {
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+        }
     </style>
 </head>
 <body>
-    <h2 class="alert-danger">@ViewBag.Result</h2>
+
+    <button  class="btn-primary go"><a style="color:aliceblue;" asp-action="Index"><i class="fa fa-arrow-left"></i> Home</a></button>
+    <h1>Cart</h1>
     <div class="row">
         <div class="col-75">
             <div class="container">
@@ -83,10 +97,16 @@
                     {
                         <div class="products">
                             <p>
-                                <img class="col-15" src="@Html.DisplayFor(modelItem => item.Book_image)" alt="Books" width="100px">
-                                <span class="font-weight-bold d-block">@Html.DisplayFor(modelItem => item.Book_name)</span>
                                 <span class="price">₹@Html.DisplayFor(modelItem => item.Cost)</span>
+                            <p>
+                                <img class="col-15" src="@Html.DisplayFor(modelItem => item.Book_image)" alt="Books" width="100px">
+
+
+                                <a class="dustbin" asp-action="Delete" asp-route-id="@item.Cart_id"><i class="fa fa-trash"></i></a>
                             </p>
+                            <span class="font-weight-bold d-block">@Html.DisplayFor(modelItem => item.Book_name)</span>
+                            </p>
+                            <br />
                         </div>
 
                     }
@@ -97,11 +117,11 @@
         </div>
         <div class="col-25">
             <div class="container">
-                <img src="https://cdn.pixabay.com/photo/2016/05/18/16/25/shopping-1400845_640.png" alt="order" width="75%">
+                <img src="https://cdn4.iconfinder.com/data/icons/book-shop/64/14_cart_shopping_book_shop_reading_literature-512.png" alt="order" width="75%">
             </div>
         </div>
     </div>
-    <a asp-action="Checkout"><button class="btn-success">Checkout</button></a>
+    <a asp-action="Checkout"><button class="btn-success go">Checkout</button></a>
 
 </body>
 </html>

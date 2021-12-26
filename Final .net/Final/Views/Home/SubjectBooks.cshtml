@@ -77,6 +77,9 @@
             -webkit-line-clamp: 1; /* number of lines to show */
             -webkit-box-orient: vertical;
         }
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -90,7 +93,7 @@
                     <img src="@Html.DisplayFor(modelItem => item.Book_image)" alt="books" width="170px" />
                     <h1 id="name">@Html.DisplayFor(modelItem => item.Book_name)</h1>
                     <p class="price">₹@Html.DisplayFor(modelItem => item.Cost)</p>
-                    <p><button><a asp-action="Details" asp-route-id="@item.Id">Details</a></button></p>
+                    <p><a asp-action="Details" asp-route-id="@item.Id"><button>Details</button></a></p>
                 </div>
             </div>
         }

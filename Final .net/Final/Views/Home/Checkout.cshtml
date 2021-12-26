@@ -17,7 +17,7 @@
             font-family: Arial;
             font-size: 17px;
             padding: 8px;
-            background-color: #fcf7f1;
+            background-color: black;
         }
 
         * {
@@ -64,10 +64,11 @@
 
 
         .container {
-            background-color:  #f7e8d9;
+            background-color: #121b21;
             padding: 5px 20px 15px 20px;
-            border: 1px solid lightgrey;
+            border: 1px solid #243342;
             border-radius: 3px;
+            color: gray;
         }
 
         input[type=text] {
@@ -90,7 +91,7 @@
         }
 
         .fbtn {
-            background-color: #3e0f0f;
+            background-color: #2d4052;
             color: white;
             padding: 12px;
             margin: 10px 0;
@@ -101,9 +102,9 @@
             font-size: 17px;
         }
 
-        .fbtn:hover {
-            background-color: #7b1e1e;
-        }
+            .fbtn:hover {
+                background-color: #2b3b2b;
+            }
 
         a {
             color: #2196F3;
@@ -123,7 +124,7 @@
 
 <body>
 
-    <h2 style="text-align: center;">Enter The Details To Deliver</h2>
+    <h2 style="text-align: center; color:lightgray;">Enter The Details To Deliver</h2>
     <div class="row">
         <div class="col-75">
             <div class="container">
@@ -174,13 +175,10 @@
                     </div>
 
                 </div>
-                <label>
-                    <input type="checkbox" name="sameadr"> Shipping address same as billing
-                </label>
-                <a asp-action="Index"><button onclick="fun()" type="submit" class="fbtn">procced</button></a>
+                <a asp-action="Index"><button onclick="fun()" type="submit" class="fbtn">Procced</button></a>
                 <script>
                     function fun() {
-                        alert("Thank you for your shoping");
+                        alert("Thank you for your shoping Your order is placed");
                     }
                 </script>
 

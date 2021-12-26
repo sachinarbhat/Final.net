@@ -56,6 +56,48 @@ namespace Final.Controllers
             }
                 return View(cartList);
         }
+        public IActionResult Delete(Cart cart, int id)
+        {
+            string connectionString = Configuration["ConnectionStrings:Myconnection"];
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = $"Select * from Cart where Cart_id='{id}'";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            cart.Cart_id = Convert.ToInt32(dataReader["Cart_id"]);
+                            cart.Book_image = Convert.ToString(dataReader["Book_image"]);
+                            cart.Book_name = Convert.ToString(dataReader["Book_name"]);
+                            cart.Cost = Convert.ToDecimal(dataReader["Cost"]);
+                            cart.Id = Convert.ToInt32(dataReader["Id"]);
+                        }
+                    }
+                }
+            }
+
+            return View(cart);
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            string connectionString = Configuration["ConnectionStrings:Myconnection"];
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = $"Delete From Cart Where Cart_id='{id}'";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+
+            return RedirectToAction("Cart");
+        }
         public IActionResult StoryBooks()
         {
             List<Books> BooksList = new List<Books>();
@@ -251,6 +293,41 @@ namespace Final.Controllers
             }
 
             
+        }
+
+        public IActionResult AdminLogin(Admin admin)
+        {
+            var check = 1;
+            string connectionString = Configuration["ConnectionStrings:MyConnection"];
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = $"Select User_id,User_password From Admin where User_id = '{admin.Adminid}' and User_password = '{admin.Adminpwd}'";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    connection.Open();
+                    var validate = command.ExecuteScalar();
+                    if (validate != null)
+                    {
+                        check = 0;
+
+                    }
+                    connection.Close();
+                }
+
+            }
+            if (check == 0)
+            {
+
+                return RedirectToAction("Index", "Book");
+            }
+            else
+            {
+
+                ViewBag.Query = 1;
+                return View();
+            }
         }
     }
 }
